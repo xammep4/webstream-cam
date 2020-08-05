@@ -1,0 +1,14 @@
+version: '2'
+services:
+  stream-client:
+    image: 192.168.1.46:5000/cam-stream-client-lh
+    restart: always
+    container_name: stream-client-lh
+    ports:
+      - "7777:80"
+  stream-server:
+    image: 192.168.1.46:5000/cam-stream-server-lh
+    restart: always
+    container_name: stream-server-lh
+    ports:
+      - "8888:8888"

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Рыбинск.Столовая</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flv.js/1.5.0/flv.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+        }
+        #player {
+            height: 90vh;
+            width: 100%;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<video autoplay muted id="player" ref="player"></video>
+<script>
+            if (flvjs.isSupported()) {
+                let video = document.getElementById('player');
+                let path = encodeURIComponent("rtsp://192.168.1.252:554/2");
+                console.log(path);
+                if (video) {
+                    const player = flvjs.createPlayer({
+                        type: "flv",
+                        isLive: true,
+                        url: 'ws://192.168.1.46:8888/rtsp?url=' + path
+                    });
+                    player.attachMediaElement(video);
+                    player.load();
+                    player.play();
+                }
+            }
+        </script>
+</body>
+</html>
